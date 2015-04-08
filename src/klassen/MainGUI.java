@@ -314,7 +314,32 @@ public class MainGUI extends JFrame
     g.drawImage(ImageFactory.getIF().getLook("soccer_room"),
                 (this.getWidth()-ImageFactory.getIF().getLook("soccer_room").getWidth())/2,
                 getHeight()-ImageFactory.getIF().getLook("soccer_room").getHeight()-50, null);
-    
+    addKeyListener(new KeyAdapter()
+    {
+      @Override
+      public void keyPressed(KeyEvent e)
+      {
+        switch(e.getKeyCode())
+        {
+          case KeyEvent.VK_C:
+          g.setColor(Color.DARK_GRAY);
+          g.fillRect(0, 0, getWidth(), getHeight());
+          g.setColor(Color.WHITE);
+          g.setFont(new Font("Tahoma", Font.BOLD, 64));
+          g.drawString("S", 40, 120);
+          g.drawString("P", 40, 200);
+          g.drawString("O", 40, 280);
+          g.drawString("N", 40, 360);
+          g.drawString("S", 40, 440);
+          g.drawString("O", 40, 520);
+          g.drawString("R", 40, 600);
+          g.drawString("S", 40, 680);
+          g.drawImage(ImageFactory.getIF().getLook("logoMueller"),140, 0, null);
+          System.out.println("blablasdf");
+          break;
+        }
+      }
+    });
   }
   
   public static void main(String args[])
