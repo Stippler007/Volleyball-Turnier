@@ -24,6 +24,7 @@ public class ImageFactory
     try 
     {
       looks.put("spar_logo", ImageIO.read(getClass().getClassLoader().getResourceAsStream("gfx/spar_logo.jpg")));
+      looks.put("soccer_room", ImageIO.read(getClass().getClassLoader().getResourceAsStream("gfx/soccer_room.jpg")));
     }
     catch(Exception ex)
     {

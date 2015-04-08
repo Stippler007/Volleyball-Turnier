@@ -6,6 +6,7 @@
 package klassen;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -172,7 +173,7 @@ public class MainGUI extends JFrame
     
     JPanel upperStuff=new JPanel(new BorderLayout());
     
-    JPanel game1=new JPanel(new GridLayout(3, 2));
+    game1=new JPanel(new GridLayout(3, 2));
     
     Font platz=new Font("Tahoma", Font.BOLD, 64);
     Font team=new Font("Tahoma", Font.BOLD, 30);
@@ -227,7 +228,7 @@ public class MainGUI extends JFrame
     
     JPanel lowerstuff=new JPanel(new BorderLayout());
     
-    JPanel game2=new JPanel(new GridLayout(3, 2));
+    game2=new JPanel(new GridLayout(3, 2));
     
     this.platz2=new JLabel("Platz 2");
     this.platz2.setHorizontalAlignment(SwingConstants.CENTER);
@@ -275,9 +276,6 @@ public class MainGUI extends JFrame
     
     stuff.add(lowerstuff);
     
-    sponsors.setLayout(new GridLayout());
-    JLabel spar=new JLabel("Spar");
-    sponsors.add(spar);
     
     showGame();
   }
@@ -289,9 +287,16 @@ public class MainGUI extends JFrame
   }
   private void showSponsores()
   {
-    this.remove(stuff);
-    add(sponsors);
-    this.repaint();
+    Graphics g=this.getGraphics();
+    g.setColor(Color.DARK_GRAY);
+    g.fillRect(0, 0, getWidth(), getHeight());
+    g.setColor(Color.WHITE);
+    g.setFont(new Font("Tahoma", Font.BOLD, 64));
+    g.drawString("Sponsoren", 40, 70);
+    g.drawImage(ImageFactory.getIF().getLook("spar_logo"), 10, 100, null);
+    g.drawImage(ImageFactory.getIF().getLook("soccer_room"), 0,
+                getHeight()-ImageFactory.getIF().getLook("soccer_room").getHeight(), null);
+    
   }
   
   public static void main(String args[])
