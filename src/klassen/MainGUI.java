@@ -9,11 +9,17 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
+import java.awt.FontFormatException;
 import java.awt.Graphics;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.scene.control.SplitPane;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -57,6 +63,7 @@ public class MainGUI extends JFrame
   private JLabel satz3;
   private JLabel satz4;
   
+  private Font font;
   
   public MainGUI()
   {
@@ -169,6 +176,14 @@ public class MainGUI extends JFrame
   }
   private void initComponents()
   {
+//    try {
+//      font=Font.createFont(Font.TRUETYPE_FONT, new File("batmfa__.ttf"));
+//    } catch (FontFormatException ex) {
+//      Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
+//    } catch (IOException ex) {
+//      Logger.getLogger(MainGUI.class.getName()).log(Level.SEVERE, null, ex);
+//    }
+    
     stuff.setLayout(new GridLayout(2, 1));
     
     JPanel upperStuff=new JPanel(new BorderLayout());
@@ -277,13 +292,15 @@ public class MainGUI extends JFrame
     stuff.add(lowerstuff);
     
     
-    showGame();
+    this.add(stuff);
   }
   private void showGame()
   {
-    this.remove(sponsors);
-    add(stuff);
     this.repaint();
+    Graphics g=this.getGraphics();
+    BufferedImage volleyBallLogo=ImageFactory.getIF().getLook("VolleyBallLogo");
+    g.drawImage(volleyBallLogo,getWidth()-volleyBallLogo.getWidth(),
+                getHeight()-volleyBallLogo.getHeight(), null);
   }
   private void showSponsores()
   {
@@ -292,10 +309,11 @@ public class MainGUI extends JFrame
     g.fillRect(0, 0, getWidth(), getHeight());
     g.setColor(Color.WHITE);
     g.setFont(new Font("Tahoma", Font.BOLD, 64));
-    g.drawString("Sponsoren", 40, 70);
-    g.drawImage(ImageFactory.getIF().getLook("spar_logo"), 10, 100, null);
-    g.drawImage(ImageFactory.getIF().getLook("soccer_room"), 0,
-                getHeight()-ImageFactory.getIF().getLook("soccer_room").getHeight(), null);
+    g.drawString("Sponsoren", 40, 100);
+    g.drawImage(ImageFactory.getIF().getLook("spar_logo"), 10, 200, null);
+    g.drawImage(ImageFactory.getIF().getLook("soccer_room"),
+                (this.getWidth()-ImageFactory.getIF().getLook("soccer_room").getWidth())/2,
+                getHeight()-ImageFactory.getIF().getLook("soccer_room").getHeight()-50, null);
     
   }
   
